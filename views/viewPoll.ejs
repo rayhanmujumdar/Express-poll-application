@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 my-5">
+          <div class="card card-body">
+            <h5><%= poll.title %></h5>
+            <p><%= poll.description %></p>
+            <div class="my-3">Result</div>
+            <div class="my-4">
+              <h5>What is your opinion</h5>
+              <form action="/polls/<%=poll._id%>" method="post">
+                <%for(let option of poll.options){%>
+                <div class="custom-control custom-radio">
+                  <input
+                    class="custom-control-input"
+                    type="radio"
+                    name="option"
+                    id="<%=option._id%>"
+                    value="<%= option.name%>"
+                  />
+                  <label for="<%=option._id%>" class="custom-control-label">
+                    <%=option.name%>
+                  </label>
+                </div>
+                <%}%>
+                <br />
+                <input
+                  type="submit"
+                  value="Submit your opinion"
+                  class="btn btn-primary"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

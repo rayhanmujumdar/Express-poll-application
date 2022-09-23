@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 my-5">
+          <div class="card card-body">
+            <h4>Create A New Poll</h4>
+            <form action="/create" method="post">
+              <div class="form-group">
+                <label for="title">Enter Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  id="title"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="description">Enter Description</label>
+                <textarea
+                  name="description"
+                  id="description"
+                  class="form-control"
+                ></textarea>
+              </div>
+              <div id="options">
+                <p>Enter your options</p>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="options"
+                    class="form-control"
+                    placeholder="option-1"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="options"
+                    class="form-control"
+                    placeholder="option-2"
+                  />
+                </div>
+              </div>
+              <button class="btn btn-secondary my-3 btn-sm" id="addOption">
+                Add more option
+              </button>
+              <br>
+              <input
+                type="submit"
+                class="btn btn-primary mt-4"
+                value="Create Poll"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let options = document.getElementById("options");
+      let addOption = document.getElementById("addOption");
+      let currentOptionNumber = 3;
+      addOption.addEventListener("click", (e) => {
+        e.preventDefault();
+        let option = createOption();
+        options.appendChild(option);
+      });
+
+      function createOption(){
+        const div = document.createElement('div')
+        div.className = 'form-group'
+        const input = document.createElement('input')
+        input.type = "text"
+        input.name = "options"
+        input.className = 'form-control'
+        input.placeholder = 'option-' + currentOptionNumber++
+        div.appendChild(input)
+        return div
+      }
+    </script>
+  </body>
+</html>
