@@ -27,6 +27,7 @@
               <div class="form-group">
                 <label for="title">Enter Title</label>
                 <input
+                  required
                   type="text"
                   name="title"
                   id="title"
@@ -36,6 +37,7 @@
               <div class="form-group">
                 <label for="description">Enter Description</label>
                 <textarea
+                  required
                   name="description"
                   id="description"
                   class="form-control"
@@ -45,6 +47,7 @@
                 <p>Enter your options</p>
                 <div class="form-group">
                   <input
+                    required
                     type="text"
                     name="options"
                     class="form-control"
@@ -53,6 +56,7 @@
                 </div>
                 <div class="form-group">
                   <input
+                    required
                     type="text"
                     name="options"
                     class="form-control"
@@ -92,6 +96,7 @@
         input.type = "text"
         input.name = "options"
         input.className = 'form-control'
+        input.required = true
         input.placeholder = 'option-' + currentOptionNumber++
         div.appendChild(input)
         return div
