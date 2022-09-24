@@ -1,12 +1,18 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const {createPollGetController,createPollPostController,getAllPolls,viewPollGetController} = require('./PollController')
-require('dotenv').config()
+const {
+  createPollGetController,
+  createPollPostController,
+  getAllPolls,
+  viewPollGetController,
+  viewPollPostController
+} = require("./PollController");
+require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 4545;
 
-app.set('view engine','ejs')
+app.set("view engine", "ejs");
 
 // middleware
 app.use(morgan("dev"));
@@ -14,21 +20,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.render('home')
+  res.render("home");
 });
-app.post('/create',createPollPostController)
-app.get('/create',createPollGetController)
-app.get('/polls',getAllPolls)
-app.get('/polls/:id',viewPollGetController)
-app.post('/polls/:id',(req,res) => {
-  console.log(req.body)
-})
-app.all('*',(_,res) => {
+app.post("/create", createPollPostController);
+app.get("/create", createPollGetController);
+app.get("/polls", getAllPolls);
+app.get("/polls/:id", viewPollGetController);
+
+app.post("/polls/:id", viewPollPostController);
+app.all("*", (_, res) => {
   res.json({
-    message: "Not Found"
-  })
-})
-const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.fp7ypgo.mongodb.net/express-cc`
+    message: "Not Found",
+  });
+});
+const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.fp7ypgo.mongodb.net/express-cc`;
 mongoose
   .connect(dbUrl)
   .then(() => {

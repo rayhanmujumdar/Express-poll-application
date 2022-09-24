@@ -4,3 +4,11 @@ npm i express mongoose morgan
 npm i -D nodemon
 
 Backend project all note:
+use Tools:
+1.Mongoose
+2.Morgan
+3.ejs
+4.bootstrap
+5.express
+6.dotenv
+

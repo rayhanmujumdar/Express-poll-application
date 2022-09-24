@@ -38,5 +38,22 @@ exports.getAllPolls = async (req, res, next) => {
 exports.viewPollGetController = async(req, res, next) => {
   const id = req.params.id
   const poll = await Poll.findById(id)
+  console.log(poll)
   res.render('viewPoll',{poll});
 };
+
+exports.viewPollPostController = async (req, res,next) => {
+  const id = req.params.id
+  const optionId = req.body.option
+  try{  
+    const poll = await Poll.findById(id)
+    const index = poll.options.findIndex(o => o.id === optionId)
+    const options = [...poll.options]
+    options[index].vote = options[index].vote + 1
+    let totalVote = poll.totalVote + 1
+    await Poll.findByIdAndUpdate({_id: poll._id},{$set: {options,totalVote}})
+    res.redirect('/polls/' + id)
+  }catch (e){
+    console.log(e)
+  }
+}
