@@ -1,0 +1,6 @@
+Command line:
+cat package.json - view to file inner.
+npm I express mongoose morgan
+npm i -D nodemon
+
+Backend project all note:
