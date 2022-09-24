@@ -24,12 +24,24 @@
           <div class="card card-body">
             <h5><%= poll.title %></h5>
             <p><%= poll.description %></p>
-            <div class="my-3">Result</div>
+            <div class="my-3">
+              <h5>Result:</h5>
+              <ul class="list-group">
+                <% for(const r of result){ %>
+                <li class="list-group-item">
+                  <p>
+                    <%= r.name%> ---->
+                    <strong><%= r.parentage.toFixed(2) %>%</strong>
+                  </p>
+                </li>
+                <% }%>
+              </ul>
+            </div>
             <div class="my-4">
               <h5>What is your opinion</h5>
               <form action="/polls/<%=poll._id%>" method="post">
                 <%for(let option of poll.options){%>
-                <div class="custom-control custom-radio">
+                <div class="custom-control custom-radio selector">
                   <input
                     class="custom-control-input"
                     type="radio"
@@ -37,13 +49,14 @@
                     id="<%=option._id%>"
                     value="<%= option._id%>"
                   />
-                  <label for="<%=option._id%>" class="custom-control-label">
+                  <label name="<%=option._id%>" for="<%=option._id%>" class="custom-control-label ">
                     <%=option.name%>
                   </label>
                 </div>
                 <%}%>
                 <br />
                 <input
+                  id="submit"
                   type="submit"
                   value="Submit your opinion"
                   class="btn btn-primary"
@@ -55,4 +68,17 @@
       </div>
     </div>
   </body>
+  <script>
+    // const options = '<%-JSON.stringify(poll.options)%>'
+    // const optionsParse = JSON.parse(options)
+    // console.log(optionsParse)
+    document.getElementById("submit").disabled = true
+    const elements = document.getElementsByClassName('selector')
+    const myFunc = () => {
+      document.getElementById("submit").disabled = false
+    }
+    for(let i = 0 ;i < elements.length;i++){
+      elements[i].children[1].addEventListener('click',myFunc,false)
+    }
+  </script>
 </html>
