@@ -16,10 +16,10 @@
   
         {
   
-          "src": "package.json",
+          "src": "/(.*)",
   
           "dest": "index.js"
-  
+          
         }
   
     ]
